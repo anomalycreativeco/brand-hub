@@ -1,0 +1,2732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anomaly Creative & Co. - Brand Hub</title>
+    <style>
+        /* Note: Proxima Nova requires license. Using system fonts as fallback */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0A0A0A;
+            color: #F5F5F5;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #1C1C1C;
+            border-bottom: 1px solid #92A8A7;
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            letter-spacing: 0.5px;
+        }
+        
+        .logo-subtitle {
+            font-size: 0.65rem;
+            color: #92A8A7;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 0.25rem;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            background: #1C1C1C;
+            border: 1px solid #92A8A7;
+            border-radius: 8px;
+            color: #e4e4e7;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #92A8A7;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #92A8A7;
+        }
+
+        .add-client-btn {
+            padding: 0.75rem 1.5rem;
+            background: #92A8A7;
+            color: #0A0A0A;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .add-client-btn:hover {
+            background: #B0CCC9;
+        }
+
+        .help-write-btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #92A8A7 0%, #B0CCC9 100%);
+            color: #0A0A0A;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .help-write-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(146, 168, 167, 0.4);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: #1C1C1C;
+            border: 1px solid #92A8A7;
+            border-radius: 6px;
+            color: #e4e4e7;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover {
+            border-color: #92A8A7;
+            background: rgba(146, 168, 167, 0.1);
+        }
+
+        .filter-btn.active {
+            background: #92A8A7;
+            border-color: #92A8A7;
+            color: #0A0A0A;
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .client-card {
+            background: #0A0A0A;
+            border: 1px solid #1C1C1C;
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .client-card:hover {
+            border-color: #92A8A7;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .client-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .client-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .client-industry {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #1C1C1C;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: #B0CCC9;
+            margin-top: 0.5rem;
+        }
+
+        .color-palette {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            border: 1px solid #92A8A7;
+        }
+
+        .tone-preview {
+            color: #B0CCC9;
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: start;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #0A0A0A;
+            border: 1px solid #1C1C1C;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 900px;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .modal-header {
+            padding: 2rem;
+            border-bottom: 1px solid #1C1C1C;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #92A8A7;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .close-btn:hover {
+            background: #1C1C1C;
+            color: #e4e4e7;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-icon {
+            color: #92A8A7;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .color-item {
+            text-align: center;
+        }
+
+        .color-box {
+            height: 80px;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            border: 1px solid #92A8A7;
+        }
+
+        .color-name {
+            font-size: 0.85rem;
+            color: #B0CCC9;
+            margin-bottom: 0.25rem;
+        }
+
+        .color-code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #92A8A7;
+        }
+
+        .font-item {
+            padding: 1rem;
+            background: #0f0f0f;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .font-name {
+            font-size: 0.9rem;
+            color: #B0CCC9;
+            margin-bottom: 0.5rem;
+        }
+
+        .font-preview {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .tone-box {
+            background: #0f0f0f;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tone-label {
+            font-weight: 600;
+            color: #92A8A7;
+            margin-bottom: 0.5rem;
+        }
+
+        .tone-description {
+            color: #B0CCC9;
+            line-height: 1.8;
+        }
+
+        .dos-donts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .dos, .donts {
+            background: #0f0f0f;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .dos h4 {
+            color: #22c55e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .donts h4 {
+            color: #ef4444;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dos ul, .donts ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .dos li, .donts li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #B0CCC9;
+        }
+
+        .dos li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #22c55e;
+        }
+
+        .donts li::before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #ef4444;
+        }
+
+        .example-box {
+            background: #0f0f0f;
+            border-left: 3px solid #92A8A7;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .example-label {
+            font-size: 0.85rem;
+            color: #92A8A7;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .example-text {
+            color: #e4e4e7;
+            line-height: 1.8;
+        }
+
+        .caption-writer-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .caption-writer-modal.active {
+            display: flex;
+            align-items: start;
+            justify-content: center;
+        }
+
+        .caption-writer-content {
+            background: #0A0A0A;
+            border: 1px solid #1C1C1C;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 2rem auto;
+        }
+
+        .writer-header {
+            padding: 2rem;
+            border-bottom: 1px solid #1C1C1C;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .writer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .writer-body {
+            padding: 2rem;
+        }
+
+        .writer-section {
+            margin-bottom: 2rem;
+        }
+
+        .writer-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #e4e4e7;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .writer-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: #0f0f0f;
+            border: 1px solid #92A8A7;
+            border-radius: 8px;
+            color: #e4e4e7;
+            font-size: 0.95rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .writer-input:focus {
+            outline: none;
+            border-color: #92A8A7;
+        }
+
+        .file-upload-area {
+            border: 2px dashed #92A8A7;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #0f0f0f;
+        }
+
+        .file-upload-area:hover {
+            border-color: #92A8A7;
+            background: #0A0A0A;
+        }
+
+        .file-upload-area.has-file {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .upload-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-text {
+            color: #B0CCC9;
+            font-size: 0.9rem;
+        }
+
+        .preview-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .preview-image-container {
+            position: relative;
+        }
+
+        .preview-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .remove-image {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #92A8A7 0%, #B0CCC9 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .generate-btn:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .results-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #1C1C1C;
+        }
+
+        .caption-option {
+            background: #0f0f0f;
+            border: 1px solid #1C1C1C;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .caption-option:hover {
+            border-color: #92A8A7;
+        }
+
+        .caption-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .caption-style {
+            font-size: 0.85rem;
+            color: #92A8A7;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .copy-btn {
+            padding: 0.5rem 1rem;
+            background: #1C1C1C;
+            border: 1px solid #92A8A7;
+            border-radius: 6px;
+            color: #e4e4e7;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #92A8A7;
+        }
+
+        .copy-btn.copied {
+            background: #22c55e;
+            border-color: #22c55e;
+        }
+
+        .caption-text {
+            color: #e4e4e7;
+            line-height: 1.8;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .loading-spinner.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 3px solid #1C1C1C;
+            border-top: 3px solid #92A8A7;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #B0CCC9;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .clients-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dos-donts {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                flex-direction: column;
+            }
+
+            .search-bar {
+                max-width: 100%;
+            }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #92A8A7;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                ANOMALY CREATIVE & CO.
+                <div class="logo-subtitle">Social-First Creative Studio</div>
+            </div>
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search clients...">
+            </div>
+            <button class="add-client-btn" onclick="openSettings()" style="background: #27272a; margin-right: 0.5rem;">⚙️ Settings</button>
+            <button class="add-client-btn" onclick="addNewClient()">+ Add Client</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All Clients</button>
+            <button class="filter-btn" data-filter="Real Estate">Real Estate</button>
+            <button class="filter-btn" data-filter="Fitness">Fitness</button>
+            <button class="filter-btn" data-filter="Professional Services">Professional Services</button>
+            <button class="filter-btn" data-filter="Personal Brand">Personal Brand</button>
+            <button class="filter-btn" data-filter="Other">Other</button>
+        </div>
+
+        <div class="clients-grid" id="clientsGrid"></div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <div class="modal-title">⚙️ Settings</div>
+                <button class="close-btn" onclick="closeSettings()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="section">
+                    <h3 style="color: #fff; margin-bottom: 0.5rem;">Anthropic API Key</h3>
+                    <p style="color: #a1a1aa; margin-bottom: 1rem; font-size: 0.9rem;">
+                        Required for AI features (Caption Writer, Hook Generator, Content Ideas)
+                    </p>
+                    <input 
+                        type="password" 
+                        id="apiKeyInput" 
+                        placeholder="sk-ant-api03-..." 
+                        style="width: 100%; padding: 0.75rem; background: #27272a; border: 1px solid #3f3f46; border-radius: 6px; color: #e4e4e7; font-size: 0.95rem; margin-bottom: 0.75rem;"
+                    >
+                    <button 
+                        onclick="saveApiKey()" 
+                        style="padding: 0.75rem 1.5rem; background: #6366f1; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;"
+                    >
+                        Save API Key
+                    </button>
+                    <div id="apiKeyStatus" style="margin-top: 0.75rem; padding: 0.75rem; border-radius: 6px; display: none;"></div>
+                    <p style="color: #71717a; margin-top: 1rem; font-size: 0.85rem;">
+                        💡 <strong>Don't have an API key?</strong><br>
+                        1. Go to <a href="https://console.anthropic.com" target="_blank" style="color: #6366f1;">console.anthropic.com</a><br>
+                        2. Sign up or log in<br>
+                        3. Go to "API Keys" and create a new key<br>
+                        4. Copy and paste it above
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="brandModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <div class="modal-title" id="modalClientName"></div>
+                    <div class="client-industry" id="modalIndustry"></div>
+                </div>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <button class="help-write-btn" onclick="openCaptionWriter()">✨ Help Me Write</button>
+                    <button class="help-write-btn" onclick="openHookGenerator()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">🎣 Get Hook Ideas</button>
+                    <button class="help-write-btn" onclick="openContentIdeas()" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">💡 Get Content Ideas</button>
+                    <button class="close-btn" onclick="closeModal()">×</button>
+                </div>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <div class="caption-writer-modal" id="captionWriterModal">
+        <div class="caption-writer-content">
+            <div class="writer-header">
+                <div class="writer-title">✨ AI Caption Writer</div>
+                <button class="close-btn" onclick="closeCaptionWriter()">×</button>
+            </div>
+            <div class="writer-body">
+                <div class="writer-section">
+                    <label class="writer-label">Upload Photos (Multiple for Carousels)</label>
+                    <div class="file-upload-area" id="fileUploadArea" onclick="document.getElementById('photoInput').click()">
+                        <div class="upload-icon">📸</div>
+                        <div class="upload-text">Click to upload photos or drag & drop</div>
+                        <input type="file" id="photoInput" accept="image/*" multiple style="display: none;" onchange="handlePhotoUpload(event)">
+                    </div>
+                    <div id="previewImagesContainer" class="preview-images"></div>
+                </div>
+
+                <div class="writer-section">
+                    <label class="writer-label">What's this post about?</label>
+                    <textarea 
+                        class="writer-input" 
+                        id="postContext"
+                        placeholder="E.g., 'Spring rose planting tips' or 'Customer testimonial from recent install' or just describe what's in the photo..."
+                    ></textarea>
+                </div>
+
+                <div class="writer-section">
+                    <label class="writer-label">Specific requirements? (Optional)</label>
+                    <textarea 
+                        class="writer-input" 
+                        id="requirements"
+                        placeholder="E.g., 'Include a call-to-action to book a consultation' or 'Mention our spring sale' or 'Keep it short for Stories'"
+                        style="min-height: 80px;"
+                    ></textarea>
+                </div>
+
+                <button class="generate-btn" onclick="generateCaptions()" id="generateBtn">
+                    Generate Captions
+                </button>
+
+                <div class="loading-spinner" id="loadingSpinner">
+                    <div class="spinner"></div>
+                    <div class="loading-text">Writing captions in <span id="currentClient"></span>'s voice...</div>
+                </div>
+
+                <div class="results-section" id="resultsSection" style="display: none;">
+                    <h3 style="color: #fff; margin-bottom: 1rem;">Your Captions</h3>
+                    <div id="captionResults"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="caption-writer-modal" id="hookGeneratorModal">
+        <div class="caption-writer-content">
+            <div class="writer-header">
+                <div class="writer-title">🎣 Viral Hook Engine</div>
+                <button class="close-btn" onclick="closeHookGenerator()">×</button>
+            </div>
+            <div class="writer-body">
+                <div class="writer-section">
+                    <label class="writer-label">What's the post about?</label>
+                    <textarea 
+                        id="hookTopic" 
+                        class="writer-textarea" 
+                        placeholder=""
+                        style="min-height: 80px;"
+                    ></textarea>
+                </div>
+
+                <div class="writer-section">
+                    <label class="writer-label">Hook Style (Optional - leave unchecked for all types)</label>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.5rem; margin-top: 0.5rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; color: #fff; cursor: pointer;">
+                            <input type="checkbox" id="hookCuriosity" value="Curiosity" style="cursor: pointer;">
+                            <span>💭 Curiosity</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; color: #fff; cursor: pointer;">
+                            <input type="checkbox" id="hookControversy" value="Controversy" style="cursor: pointer;">
+                            <span>🔥 Controversy</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; color: #fff; cursor: pointer;">
+                            <input type="checkbox" id="hookStorytelling" value="Storytelling" style="cursor: pointer;">
+                            <span>📖 Storytelling</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; color: #fff; cursor: pointer;">
+                            <input type="checkbox" id="hookLists" value="Lists" style="cursor: pointer;">
+                            <span>📝 Lists</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; color: #fff; cursor: pointer;">
+                            <input type="checkbox" id="hookBoldClaims" value="Bold Claims" style="cursor: pointer;">
+                            <span>⚡ Bold Claims</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; color: #fff; cursor: pointer;">
+                            <input type="checkbox" id="hookFunny" value="Funny" style="cursor: pointer;">
+                            <span>😂 Funny</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="generate-btn" onclick="generateHooks()" id="generateHooksBtn">
+                    Generate Hooks
+                </button>
+
+                <div class="loading-spinner" id="hookLoadingSpinner">
+                    <div class="spinner"></div>
+                    <div class="loading-text">Generating scroll-stopping hooks...</div>
+                </div>
+
+                <div class="results-section" id="hookResultsSection" style="display: none;">
+                    <h3 style="color: #fff; margin-bottom: 1rem;">Your Viral Hooks</h3>
+                    <div id="hookResults"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="caption-writer-modal" id="contentIdeasModal">
+        <div class="caption-writer-content">
+            <div class="writer-header">
+                <div class="writer-title">💡 Content Ideas Generator</div>
+                <button class="close-btn" onclick="closeContentIdeas()">×</button>
+            </div>
+            <div class="writer-body">
+                <div class="writer-section">
+                    <label class="writer-label">What type of content are you looking for?</label>
+                    <textarea 
+                        id="contentTopic" 
+                        class="writer-textarea" 
+                        placeholder=""
+                        style="min-height: 80px;"
+                    ></textarea>
+                    <div style="color: #92A8A7; font-size: 0.85rem; margin-top: 0.5rem;">
+                        Optional: Be specific (e.g., "fade tutorials", "heavy equipment recovery") or leave broad for general ideas
+                    </div>
+                </div>
+
+                <button class="generate-btn" onclick="generateContentIdeas()" id="generateIdeasBtn">
+                    Research Top Content
+                </button>
+
+                <div class="loading-spinner" id="ideasLoadingSpinner">
+                    <div class="spinner"></div>
+                    <div class="loading-text">Researching viral content...</div>
+                </div>
+
+                <div class="results-section" id="ideasResultsSection" style="display: none;">
+                    <h3 style="color: #fff; margin-bottom: 1rem;">Top Performing Content + Ideas</h3>
+                    <div id="ideasResults"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const clients = [
+            {
+                name: "Witherspoon Rose Culture",
+                industry: "Professional Services",
+                colors: [
+                    { name: "Deep Teal", hex: "#007672", role: "Primary Brand" },
+                    { name: "Medium Teal", hex: "#40c1ac", role: "Secondary" },
+                    { name: "Light Teal", hex: "#71cc98", role: "Accent" },
+                    { name: "Soft Pink", hex: "#f2acb9", role: "Feminine Touch" },
+                    { name: "Rose Pink", hex: "#e06287", role: "Rose Reference" },
+                    { name: "Deep Magenta", hex: "#ac145a", role: "Bold Accent" }
+                ],
+                fonts: [
+                    { name: "MrsEavesRoman Regular", usage: "Headers & Titles", preview: "Premier Rose Gardeners since 1951" },
+                    { name: "Locator", usage: "Body Copy & Descriptions", preview: "Expertly planted, lovingly maintained" }
+                ],
+                tone: {
+                    description: "Timeless, elegant, and educated. Witherspoon Rose Culture combines 75 years of expertise with an upbeat, positive tone that positions them as the trusted expert guide. Professional yet approachable, emphasizing beauty, heritage, and exceptional care.",
+                    voice: ["Elegant", "Educated", "Upbeat", "Expert", "Timeless"]
+                },
+                dos: [
+                    "Emphasize 75 years of rose expertise and heritage",
+                    "Use nostalgic, sentimental language that evokes grandmother's rose gardens",
+                    "Highlight year-round care and maintenance expertise",
+                    "Reference specific rose varieties and proper care techniques",
+                    "Use 'plant protectants' or 'spray treatments' instead of chemicals",
+                    "Include relevant keywords: rose care, rose garden, landscape design, garden maintenance, pruning, fertilizing"
+                ],
+                donts: [
+                    "Use harsh chemical terms: fungicide, pesticide, insecticide",
+                    "Say 'dead' - always use 'dormant' when describing plant states",
+                    "Treat roses as generic landscaping - they're a specialty",
+                    "Be overly technical without context",
+                    "Ignore the emotional connection customers have with roses"
+                ],
+                competitors: [
+                    {
+                        name: "The Perfect Rose",
+                        description: "Award-winning rose care service covering Carolinas (Charlotte to Greensboro/Winston-Salem). Founded by Robert Myers (ARS award winner) and Jack Page. Offers design, installation, and maintenance. Similar premium positioning with rose specialization.",
+                        url: "https://theperfectrose.com"
+                    },
+                    {
+                        name: "Paul Zimmerman Roses",
+                        description: "Exclusive Rose Consultant to Biltmore Estate (Asheville, NC). Offers consulting, design, workshops, and rose tours internationally. Expert positioning through books, speaking, and education. More consulting-focused than hands-on maintenance.",
+                        url: "https://paulzimmermanroses.com"
+                    },
+                    {
+                        name: "Precision Landscape Management",
+                        description: "Upstate SC (Greenville, Greer, Seneca). Offers 'fine gardening' services including specialty rose care as part of comprehensive landscape maintenance. Less rose-focused, more general premium gardening.",
+                        url: "https://precisiongvl.com/fine-gardening/"
+                    },
+                    {
+                        name: "General Landscaping Companies",
+                        description: "Numerous local landscapers offer basic rose care as an add-on service (pruning, fertilizing) but lack the deep rose expertise, 75-year heritage, and exclusive rose focus that differentiates Witherspoon Rose Culture.",
+                        url: null
+                    }
+                ]
+            },
+            {
+                name: "Coalition Kitchen",
+                industry: "Other",
+                instagram: {
+                    handle: "@coalition_kitchen",
+                    url: "https://www.instagram.com/coalition_kitchen/",
+                    bio: "North Carolina's premier meal prep company 🥘 Meals on a Mission • Home Delivery • Grab & Go Fridges • Founded 2022",
+                    followers: "1,200+",
+                    posts: "400+"
+                },
+                colors: [
+                    { name: "Military Black", hex: "#000000", role: "Primary Brand" },
+                    { name: "Tactical Tan", hex: "#C4A676", role: "Secondary/Military" },
+                    { name: "White", hex: "#FFFFFF", role: "Clean/Fresh" }
+                ],
+                fonts: [
+                    { name: "Bold Sans-Serif", usage: "Headers & Logo", preview: "MEALS ON A MISSION" },
+                    { name: "Clean Sans-Serif", usage: "Body Copy", preview: "Precision cooking. Rapid cooling. Fresh delivery." }
+                ],
+                tone: {
+                    description: "Mission-driven, transparent, and athlete-focused. Coalition Kitchen combines military precision with culinary passion, positioning themselves as the trusted partner for athletes and health-conscious individuals. Direct, authentic, and community-oriented with an emphasis on quality and convenience.",
+                    voice: ["Mission-driven", "Transparent", "Athlete-focused", "Passionate", "Community-oriented"]
+                },
+                dos: [
+                    "Emphasize transparency in ingredients and macros",
+                    "Highlight the culinary and athletic expertise of founders (30 years service industry, 40 years athletic competition)",
+                    "Showcase technology and process (precision cooking, rapid cooling, cold chain)",
+                    "Feature cultural diversity in meal offerings",
+                    "Talk about convenience and eliminating meal planning stress",
+                    "Reference sustainability efforts (recyclable containers, reduced food waste, solar-powered van)",
+                    "Use keywords: meal prep, healthy meals, macro-friendly, athlete nutrition, fresh delivery, Raleigh meal prep"
+                ],
+                donts: [
+                    "Don't use generic meal prep language that sounds like every other company",
+                    "Avoid making unsubstantiated health claims",
+                    "Don't downplay the athletic and military connection",
+                    "Avoid being overly corporate or impersonal",
+                    "Don't ignore the local, community-focused aspect"
+                ],
+                competitors: [
+                    {
+                        name: "Clean Eats",
+                        description: "Major competitor in the Raleigh area with strong brand recognition. Offers similar meal prep services with pickup and delivery options.",
+                        url: null,
+                        instagram: "https://www.instagram.com/cleaneatzraleigh/"
+                    },
+                    {
+                        name: "Factor",
+                        description: "National meal delivery competitor. Coalition Kitchen differentiates through local presence, cheaper pricing, better customer support, and fresher products.",
+                        url: "https://www.factor75.com",
+                        instagram: null
+                    },
+                    {
+                        name: "212 Meal Prep",
+                        description: "Charlotte-based competitor focusing on pickup/preorder model similar to Coalition Kitchen's pickup service.",
+                        url: "https://212meals.com",
+                        instagram: "https://www.instagram.com/212mealprep/"
+                    },
+                    {
+                        name: "Hello Fresh",
+                        description: "National meal kit competitor. Coalition Kitchen offers ready-to-eat meals vs. meal kits, plus local service and athletic focus.",
+                        url: "https://www.hellofresh.com",
+                        instagram: null
+                    },
+                    {
+                        name: "Project Lean Nation",
+                        description: "Meal prep competitor offering similar services but less local presence and customization than Coalition Kitchen.",
+                        url: null,
+                        instagram: null
+                    }
+                ]
+            },
+            {
+                name: "Exeter Building Company",
+                industry: "Real Estate",
+                instagram: {
+                    handle: "@exeterbuildingcompany",
+                    url: "https://www.instagram.com/exeterbuildingcompany/",
+                    bio: "Raleigh's premier custom home builder • Service • Excellence • Community • Building your legacy since [year]",
+                    followers: "TBD",
+                    posts: "TBD"
+                },
+                colors: [
+                    { name: "Charcoal", hex: "#3A3A3A", role: "Primary Brand" },
+                    { name: "White", hex: "#FFFFFF", role: "Clean/Contrast" },
+                    { name: "Warm Gray", hex: "#A8A8A8", role: "Secondary/Backgrounds" },
+                    { name: "Black", hex: "#000000", role: "Accents" }
+                ],
+                fonts: [
+                    { name: "Trajan/Cinzel (Serif)", usage: "Headers & Brand Name", preview: "EXETER BUILDING COMPANY" },
+                    { name: "Clean Sans-Serif", usage: "Body Copy", preview: "Building your legacy with precision and grace" }
+                ],
+                tone: {
+                    description: "Expert and friendly with a focus on luxury, precision, and legacy. Exeter Building Company positions custom home building as an investment in your mental and emotional future - a culmination of life's work. Professional yet approachable, emphasizing seamless service and exceptional craftsmanship.",
+                    voice: ["Luxury", "Organized", "Family-focused", "Expert", "Service-oriented"]
+                },
+                dos: [
+                    "Emphasize the seamless start-to-finish process from lot selection to design and build",
+                    "Position custom homes as an investment in mental and emotional future; a culmination of life's work and legacy",
+                    "Highlight core values: Service, Excellence, Community, Accountability, Giving back, Integrity",
+                    "Showcase years of experience as Raleigh's top residential construction company",
+                    "Focus on precision, grace, and first-class service that exceeds expectations",
+                    "Appeal to high-achieving, high-income audience (40+) with affinity for 'nicer' things",
+                    "Use keywords: custom homes Raleigh, luxury home builder, custom home building, residential construction"
+                ],
+                donts: [
+                    "Don't 'bash' or talk about what other builders do wrong",
+                    "Avoid being overly salesy or pushy",
+                    "Don't downplay the emotional significance of home building",
+                    "Avoid generic construction language - this is about legacy and life's work"
+                ],
+                competitors: [
+                    {
+                        name: "Raleigh Custom Homes",
+                        description: "Custom home builders serving the Raleigh area with similar high-end residential construction services. Established in 1996, focusing on luxury custom homes.",
+                        url: "https://raleighcustomhomes.com",
+                        instagram: "https://www.instagram.com/raleighcustomhomes/"
+                    },
+                    {
+                        name: "Homestead Building Company",
+                        description: "Luxury custom home builder in Raleigh. Known for modern homes, white-glove service, and 8.5-month average build time.",
+                        url: "https://homesteadbuilt.com",
+                        instagram: "https://www.instagram.com/homesteadbuildingcompany/"
+                    },
+                    {
+                        name: "Loyd Builders",
+                        description: "Second-generation luxury custom home builder in the Triangle. Founded in 2000, specializing in attention to detail and building relationships with homeowners.",
+                        url: "https://www.loydbuilders.com",
+                        instagram: "https://www.instagram.com/loydbuilders/"
+                    }
+                ]
+            },
+            {
+                name: "Currin Outdoor Living",
+                industry: "Professional Services",
+                instagram: {
+                    handle: "@currinoutdoor",
+                    url: "https://www.instagram.com/currinoutdoor/",
+                    bio: "Crafting luxury backyards with and without pools. Full service design » build » maintain. Follow for projects, behind-the-scenes, and more!",
+                    followers: "13K",
+                    posts: "682"
+                },
+                colors: [
+                    { name: "Currin Red", hex: "#B83A3A", role: "Primary Brand" },
+                    { name: "White", hex: "#FFFFFF", role: "Text/Contrast" }
+                ],
+                fonts: [
+                    { name: "Sans-Serif (Clean)", usage: "Main Logo - 'CURRIN' and 'OUTDOOR LIVING'", preview: "CURRIN OUTDOOR LIVING" },
+                    { name: "Signature Script", usage: "Logomark - 'C' Symbol", preview: "Elegant signature C" }
+                ],
+                tone: {
+                    description: "Expert and creative with a focus on luxury, God-focused values, and refined relationships. Currin Outdoor Living emphasizes bringing vacation vibes to your backyard through unmatched quality and process. Position outdoor spaces as personal retreats that bring people together and add lasting value to the home.",
+                    voice: ["Luxury", "God-focused", "Refined", "Relationship-driven", "Expert", "Creative"]
+                },
+                dos: [
+                    "Emphasize the in-house team advantage - from idea to design to build with one dedicated team (not passed contractor to contractor)",
+                    "Highlight unmatched quality with premium materials and unmatched process",
+                    "Play on 'bring the vacation to your backyard so it never has to end' emotional trigger",
+                    "Position as high-end landscape maintenance, not entry-level lawn services",
+                    "Showcase full-service capabilities: pool design/build, backyard design/build, fire pits, patio hardscapes, landscape design, landscape maintenance",
+                    "Target high-income earners ($2M+ homes, 2+ years in residence, denser RDU areas like North Hills, Governor's Club Durham)",
+                    "Use keywords: outdoor living, luxury pools, backyard design, custom outdoor spaces, landscape design Raleigh, pool builder"
+                ],
+                donts: [
+                    "Don't bash competitors or talk negatively about other builders",
+                    "Avoid sounding like entry-level services (don't say 'mow lawns' - this is high-end landscape maintenance)",
+                    "Don't downplay the in-house team advantage",
+                    "Avoid generic pool/landscape language - emphasize the vacation retreat lifestyle positioning"
+                ],
+                competitors: [
+                    {
+                        name: "Aquatic Artists Inc",
+                        description: "Luxury pool designers serving Eastern and Coastal NC. Known for custom-built concrete pools with innovative designs and water features.",
+                        url: "https://www.aquaticartistsinc.com",
+                        instagram: "https://www.instagram.com/aquaticartistsinc/"
+                    },
+                    {
+                        name: "Swanson Landscapes (Swanscapes)",
+                        description: "Chapel Hill-based landscape company serving the Carolinas. Established 2016.",
+                        url: null,
+                        instagram: "https://www.instagram.com/swanscapenc/"
+                    },
+                    {
+                        name: "Lyfe Pools",
+                        description: "Master pool designer and builder focused on lifestyle-driven spaces. Uses 'LyfeStyle Process' for custom concrete pools and outdoor living.",
+                        url: "https://lyfepools.com",
+                        instagram: "https://www.instagram.com/lyfe_pools/"
+                    },
+                    {
+                        name: "Liquid Designs",
+                        description: "Veteran-owned, family-operated custom pool builder with 20+ years expertise. Specializes in custom concrete pools and artisanal waterscapes.",
+                        url: "https://www.liquiddesignsnc.com",
+                        instagram: "https://www.instagram.com/liquiddesignsllc/"
+                    }
+                ]
+            },
+            {
+                name: "McMillan Design",
+                industry: "Real Estate",
+                instagram: {
+                    handle: "@mcmillandesigninc",
+                    url: "https://www.instagram.com/mcmillandesigninc/",
+                    bio: "Award-winning residential design firm. Innovation, beautiful & boundary-pushing design. Custom home plans & renovations. Parade of Homes winners. Est. 2004",
+                    followers: "6.6K",
+                    posts: "918"
+                },
+                colors: [
+                    { name: "Black", hex: "#000000", role: "Primary Brand" },
+                    { name: "White", hex: "#FFFFFF", role: "Contrast/Background" }
+                ],
+                fonts: [
+                    { name: "Josefin Sans Bold", usage: "Titles & Headers", preview: "McMillan Design" },
+                    { name: "Josefin Sans Regular", usage: "Body & Descriptions", preview: "innovative Design WITH YOU IN MIND" }
+                ],
+                tone: {
+                    description: "Expert, creative, and minimalistic with a clean, professional aesthetic. McMillan Design emphasizes innovation and beautiful, boundary-pushing design. Keep captions focused on the images - showcase the homes and designs.",
+                    voice: ["Expert", "Creative", "Minimalistic", "Professional", "Innovation-focused", "Design-driven"]
+                },
+                dos: [
+                    "Keep captions focused on what's shown in the image/carousel",
+                    "Emphasize innovation, beautiful design, and award-winning work",
+                    "Use 'Modern Farmhouse-inspired' or 'Coastal-inspired' when referencing styles (NEVER label directly as 'Modern Farmhouse' or 'Coastal')",
+                    "Highlight the design/aesthetic elements visible in the photos",
+                    "Use clean, professional language that matches the minimalistic brand",
+                    "Feature carousels showing design progression or multiple angles",
+                    "Use keywords: custom home design, architectural design, home plans, residential design, Wake Forest"
+                ],
+                donts: [
+                    "NEVER label architectural styles directly - ALWAYS use 'xxxxx-inspired' (this is critical)",
+                    "Don't make claims about specific services or processes if you're unsure - stick to what's in the image",
+                    "Avoid overly technical architectural terms",
+                    "Don't use generic design language - emphasize innovation and boundary-pushing approach"
+                ],
+                competitors: [
+                    {
+                        name: "Frazier Home Design",
+                        description: "High-end residential design firm led by Tony Frazier in Raleigh, NC. Founded 2007. Known for live hand-sketching with clients and luxury custom homes throughout the US. Strong Instagram presence with design process content.",
+                        url: "https://www.frazierhomedesign.com",
+                        instagram: "https://www.instagram.com/frazierhomedesign/"
+                    },
+                    {
+                        name: "Dynamic Design Group",
+                        description: "Full-service residential design company by David Grorud in Raleigh, NC. Founded 2010. Specializes in custom homes, multi-family/townhomes, additions/renovations. Stock plans available. Parade of Homes contributor.",
+                        url: "https://www.dynamicdesigngroupinc.com",
+                        instagram: "https://www.instagram.com/dynamic_design_group/"
+                    }
+                ]
+            },
+            {
+                name: "Shear Perfection Barbershop",
+                industry: "Professional Services",
+                instagram: {
+                    handle: "@_shearperfection",
+                    url: "https://www.instagram.com/_shearperfection/",
+                    bio: "Aaron N. CEO 💈🇺🇸INTERNATIONAL BARBER🇬🇧💈 Ambassador: @andisclippers Partnership: @forteseries Educator: @saloncentric ⠀🔻BOOK NOW 'Link in Bio'🔻",
+                    followers: "21K",
+                    posts: "1,606"
+                },
+                colors: [
+                    { name: "Black", hex: "#000000", role: "Primary/Logo" },
+                    { name: "White", hex: "#FFFFFF", role: "Contrast/Text" },
+                    { name: "Limewash Gray", hex: "#C8C8C8", role: "Textured Background (concrete/plaster aesthetic)" }
+                ],
+                fonts: [
+                    { name: "Bold Sans-Serif", usage: "Logo & Headers", preview: "SHEAR PERFECTION" },
+                    { name: "Clean Sans", usage: "Body Text", preview: "Building careers, brands, and legacy" }
+                ],
+                tone: {
+                    description: "Keep it real and conversational. Talk like you're sitting in the barber chair - casual, authentic, no corporate BS. Focus on the work, the craft, and the culture. This is about building something bigger than just haircuts.",
+                    voice: ["Real", "Conversational", "Authentic", "Confident", "Skilled"]
+                },
+                dos: [
+                    "Caption what you see - the cut, the fade, the transformation",
+                    "Use actual barber terms when talking about cuts (taper fade, skin fade, burst fade, drop fade, low fade, high fade, etc.)",
+                    "Keep it conversational - like you're explaining the cut to someone in the chair",
+                    "Show the craft and skill without being preachy about it",
+                    "Emphasize building careers and brands, not just cutting hair",
+                    "Make it about the shop and the team, not just one person",
+                    "Use keywords naturally: barbershop Raleigh, fades, men's haircuts, barber training"
+                ],
+                donts: [
+                    "Don't force slang or try too hard to sound cool",
+                    "Don't use corporate speak or overly professional language",
+                    "Don't make it all about Aaron - this is the shop's brand",
+                    "Don't overthink it - simple and authentic beats complicated"
+                ],
+                competitors: [
+                    {
+                        name: "Mister Pompadour",
+                        description: "Voted Raleigh's Best Barbershop. Upscale barber lounge with cocktails. Men's hair, beard & shave products. Focus on raising grooming standards.",
+                        url: "https://www.cutsshavescocktails.com",
+                        instagram: "https://www.instagram.com/mister.pompadour/"
+                    },
+                    {
+                        name: "Billionaire's Barbershop",
+                        description: "High-rated Raleigh barbershop for precision cuts, fades, and professional beard care. Multiple locations in the area.",
+                        url: "https://www.bookmidtown.com",
+                        instagram: "https://www.instagram.com/kingofraleigh/"
+                    },
+                    {
+                        name: "The Bar Ber Shop",
+                        description: "More than just a barbershop - building a legacy. Expert fades, shaves, and beard services. Focus on character, patience, humility, and community.",
+                        url: "https://www.thebarbershopnc.com",
+                        instagram: null
+                    }
+                ]
+            },
+            {
+                name: "Dean's Wrecker Service",
+                industry: "Professional Services",
+                instagram: {
+                    handle: "@deans_wrecker_service",
+                    url: "https://www.instagram.com/deans_wrecker_service/",
+                    bio: "Raleigh's towing, recovery, and hauling experts 🚗 919-872-4476 for cars & small equipment 🚜 919-422-4810 for heavy duty & crane",
+                    followers: "732",
+                    posts: "74"
+                },
+                colors: [
+                    { name: "Red", hex: "#DC143C", role: "Primary Brand" },
+                    { name: "Silver", hex: "#C0C0C0", role: "Metallic Accent" },
+                    { name: "Black", hex: "#000000", role: "Background/Text" },
+                    { name: "White", hex: "#FFFFFF", role: "Contrast" }
+                ],
+                fonts: [
+                    { name: "Bold Sans-Serif", usage: "Logo - DEAN'S", preview: "WRECKER SERVICE" },
+                    { name: "Sans-Serif", usage: "Body text", preview: "Family owned since 1985" }
+                ],
+                tone: {
+                    description: "Professional, experienced, and reliable. Focus on technical accuracy and expertise. This is a family-owned business with 40 years of towing experience. Keep captions focused on what's in the image - correctly identify the equipment and machinery.",
+                    voice: ["Professional", "Experienced", "Reliable", "Technical", "Detail-oriented"]
+                },
+                dos: [
+                    "CRITICAL: Correctly identify Dean's equipment (flatbed, wrecker, rotator, rollback, etc.) - note: if it's a rotator, call it a rotator, NOT a crane",
+                    "CRITICAL: Correctly identify what's being moved (excavator, semi truck, bulldozer, loader, RV, bus, etc.)",
+                    "Include approximate weight when showing equipment being moved (e.g., ~45,000 lbs or ~12 tons)",
+                    "Use proper towing/heavy equipment terminology",
+                    "Emphasize 40 years family-owned experience and expertise",
+                    "Highlight 24/7 availability and GPS tracking",
+                    "Show the technical skill and care taken with equipment",
+                    "Use keywords: towing Raleigh, heavy duty towing, crane service, equipment relocation, wrecker service"
+                ],
+                donts: [
+                    "CRITICAL: NEVER call a rotator a 'crane' - it's a rotator (even though it has crane capabilities). This is a major industry distinction.",
+                    "CRITICAL: NEVER mention the client/company name if they have stickers or decals on equipment (e.g., if it's a Gregory Poole excavator, you can say 'CAT excavator' but NEVER 'Gregory Poole' or mention their company)",
+                    "Don't misidentify equipment - accuracy is critical to their expertise",
+                    "Don't guess at weights if you're not sure - just describe the equipment",
+                    "Don't overcomplicate captions - keep them focused on the work shown",
+                    "Don't use overly casual language - maintain professional tone"
+                ],
+                competitors: [
+                    {
+                        name: "Raleigh Towing & Recovery",
+                        description: "Modern fleet of light, medium, and heavy-duty wreckers. In business since 2002. 100+ years combined team experience.",
+                        url: "https://raleightowingnc.com",
+                        instagram: null
+                    },
+                    {
+                        name: "East Coast Towing",
+                        description: "Serving since 1998. WreckMaster certified operators. Handles up to 100,000 lbs. Trusted by local law enforcement.",
+                        url: "https://eastcoasttowing.com",
+                        instagram: null
+                    },
+                    {
+                        name: "Dunn's Wrecker Service",
+                        description: "Established 1972. Family and locally-owned. Light and medium duty towing, equipment transportation.",
+                        url: "https://dunnswreckerservice.com",
+                        instagram: null
+                    }
+                ]
+            }
+        ];
+
+        let currentFilter = 'all';
+        let searchTerm = '';
+        let currentClientForWriter = null;
+        let uploadedImages = [];
+        let contentIdeasConversation = []; // Track conversation history for refinement
+
+        function renderClients() {
+            const grid = document.getElementById('clientsGrid');
+            
+            let filteredClients = clients.filter(client => {
+                const matchesFilter = currentFilter === 'all' || client.industry === currentFilter;
+                const matchesSearch = client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                    client.industry.toLowerCase().includes(searchTerm.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filteredClients.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔍</div>
+                        <h3>No clients found</h3>
+                        <p>Try adjusting your search or filters</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filteredClients.map(client => `
+                <div class="client-card" onclick="openClient('${client.name.replace(/'/g, "\\'")}')">
+                    <div class="client-header">
+                        <div>
+                            <div class="client-name">${client.name}</div>
+                            <div class="client-industry">${client.industry}</div>
+                        </div>
+                    </div>
+                    <div class="color-palette">
+                        ${client.colors.slice(0, 4).map(color => 
+                            `<div class="color-swatch" style="background-color: ${color.hex}"></div>`
+                        ).join('')}
+                    </div>
+                    <div class="tone-preview">"${client.tone.description.slice(0, 80)}..."</div>
+                </div>
+            `).join('');
+        }
+
+        function openClient(clientName) {
+            const client = clients.find(c => c.name === clientName);
+            if (!client) return;
+
+            document.getElementById('modalClientName').textContent = client.name;
+            document.getElementById('modalIndustry').textContent = client.industry;
+            
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">🎨</span>
+                        Brand Colors
+                    </h3>
+                    <div class="color-grid">
+                        ${client.colors.map(color => `
+                            <div class="color-item">
+                                <div class="color-box" style="background-color: ${color.hex}"></div>
+                                <div class="color-name">${color.name}</div>
+                                <div class="color-code">${color.hex}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">✍️</span>
+                        Typography
+                    </h3>
+                    ${client.fonts.map(font => `
+                        <div class="font-item">
+                            <div class="font-name">${font.name} - ${font.usage}</div>
+                            <div class="font-preview">${font.preview}</div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">💬</span>
+                        Tone & Voice
+                    </h3>
+                    <div class="tone-box">
+                        <div class="tone-label">Brand Voice</div>
+                        <div class="tone-description">${client.tone.description}</div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+                        ${client.tone.voice.map(trait => 
+                            `<span style="padding: 0.5rem 1rem; background: #0f0f0f; border-radius: 6px; font-size: 0.9rem;">${trait}</span>`
+                        ).join('')}
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">✅</span>
+                        Writing Guidelines
+                    </h3>
+                    <div class="dos-donts">
+                        <div class="dos">
+                            <h4>✓ Do's</h4>
+                            <ul>
+                                ${client.dos.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="donts">
+                            <h4>✗ Don'ts</h4>
+                            <ul>
+                                ${client.donts.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">🎯</span>
+                        Competitors & Market Position
+                    </h3>
+                    ${client.competitors && client.competitors.length > 0 ? client.competitors.map(comp => `
+                        <div class="example-box">
+                            <div class="example-label">${comp.name}</div>
+                            <div class="example-text">${comp.description}</div>
+                            <div style="display: flex; gap: 1rem; margin-top: 0.5rem; flex-wrap: wrap;">
+                                ${comp.instagram ? `<a href="${comp.instagram}" target="_blank" style="color: #92A8A7; text-decoration: none; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.25rem;">📸 Instagram</a>` : ''}
+                                ${comp.url ? `<a href="${comp.url}" target="_blank" style="color: #92A8A7; text-decoration: none; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.25rem;">🌐 Website</a>` : ''}
+                            </div>
+                        </div>
+                    `).join('') : '<div class="tone-description">No competitor information available yet.</div>'}
+                </div>
+            `;
+
+            // Set the client for caption writer and hook generator
+            currentClientForWriter = client;
+            
+            document.getElementById('brandModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('brandModal').classList.remove('active');
+        }
+
+        function addNewClient() {
+            alert('This would open a form to add a new client. You can customize this functionality to add clients to your data source (Google Sheets, Airtable, etc.)');
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchTerm = e.target.value;
+            renderClients();
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderClients();
+            });
+        });
+
+        document.getElementById('brandModal').addEventListener('click', (e) => {
+            if (e.target.id === 'brandModal') {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeCaptionWriter();
+                closeSettings();
+            }
+        });
+
+        // Settings Modal Functions
+        function openSettings() {
+            document.getElementById('settingsModal').classList.add('active');
+            // Load existing API key if present
+            const savedKey = localStorage.getItem('anthropic_api_key');
+            if (savedKey) {
+                document.getElementById('apiKeyInput').value = savedKey;
+            }
+        }
+
+        function closeSettings() {
+            document.getElementById('settingsModal').classList.remove('active');
+        }
+
+        function saveApiKey() {
+            const apiKey = document.getElementById('apiKeyInput').value.trim();
+            const statusDiv = document.getElementById('apiKeyStatus');
+            
+            if (!apiKey) {
+                statusDiv.style.display = 'block';
+                statusDiv.style.background = 'rgba(239, 68, 68, 0.1)';
+                statusDiv.style.border = '1px solid rgba(239, 68, 68, 0.3)';
+                statusDiv.style.color = '#ef4444';
+                statusDiv.textContent = '❌ Please enter an API key';
+                return;
+            }
+
+            if (!apiKey.startsWith('sk-ant-')) {
+                statusDiv.style.display = 'block';
+                statusDiv.style.background = 'rgba(239, 68, 68, 0.1)';
+                statusDiv.style.border = '1px solid rgba(239, 68, 68, 0.3)';
+                statusDiv.style.color = '#ef4444';
+                statusDiv.textContent = '❌ Invalid API key format. Should start with "sk-ant-"';
+                return;
+            }
+
+            localStorage.setItem('anthropic_api_key', apiKey);
+            
+            statusDiv.style.display = 'block';
+            statusDiv.style.background = 'rgba(34, 197, 94, 0.1)';
+            statusDiv.style.border = '1px solid rgba(34, 197, 94, 0.3)';
+            statusDiv.style.color = '#22c55e';
+            statusDiv.textContent = '✅ API key saved! AI features are now enabled.';
+
+            setTimeout(() => {
+                closeSettings();
+            }, 1500);
+        }
+
+        function getApiKey() {
+            const apiKey = localStorage.getItem('anthropic_api_key');
+            if (!apiKey) {
+                alert('Please add your Anthropic API key in Settings (⚙️) first!');
+                openSettings();
+                return null;
+            }
+            return apiKey;
+        }
+
+        function openCaptionWriter() {
+            const clientName = document.getElementById('modalClientName').textContent;
+            currentClientForWriter = clients.find(c => c.name === clientName);
+            
+            document.getElementById('currentClient').textContent = currentClientForWriter.name;
+            
+            // Update placeholders based on client
+            const postContextField = document.getElementById('postContext');
+            const requirementsField = document.getElementById('requirements');
+            
+            // Client-specific placeholder examples
+            const placeholders = {
+                'Witherspoon Rose Culture': {
+                    context: "E.g., 'Spring rose planting tips' or 'Customer testimonial from recent install' or just describe what's in the photo...",
+                    requirements: "E.g., 'Include a call-to-action to book a consultation' or 'Mention our spring care packages' or 'Keep it educational'"
+                },
+                'Coalition Kitchen': {
+                    context: "E.g., 'New protein bowl menu launch' or 'Customer transformation story' or just describe what's in the photo...",
+                    requirements: "E.g., 'Include a call-to-action to order' or 'Mention military discount' or 'Keep it short for Stories'"
+                },
+                'Exeter Building Company': {
+                    context: "E.g., 'Custom home construction progress' or 'Before/after renovation' or just describe what's in the photo...",
+                    requirements: "E.g., 'Include call-to-action to schedule consultation' or 'Highlight craftsmanship' or 'Keep it professional'"
+                },
+                'Currin Outdoor Living': {
+                    context: "E.g., 'Pool installation project reveal' or 'Backyard transformation' or just describe what's in the photo...",
+                    requirements: "E.g., 'Include call-to-action to book design consultation' or 'Emphasize luxury positioning' or 'Highlight the vacation vibe'"
+                },
+                'McMillan Design': {
+                    context: "E.g., 'Custom home design rendering' or 'Completed home tour' or just describe what's in the photo...",
+                    requirements: "E.g., 'Remember to use \"Modern Farmhouse-inspired\" not \"Modern Farmhouse\"' or 'Focus on the design shown' or 'Keep it clean and professional'"
+                },
+                'Shear Perfection Barbershop': {
+                    context: "E.g., 'Skin fade haircut' or 'Before/after transformation' or just describe the cut and who did it...",
+                    requirements: "E.g., 'Credit the barber who did the cut' or 'Use proper barber terminology' or 'Keep it simple and direct'"
+                },
+                "Dean's Wrecker Service": {
+                    context: "E.g., 'Semi truck recovery off I-40' or 'CAT excavator relocation' or just describe what's in the photo...",
+                    requirements: "E.g., 'Include approximate weight' or 'Mention the equipment manufacturer (CAT, Komatsu) but NOT client company names' or 'Highlight technical expertise'"
+                }
+            };
+            
+            // Set placeholders based on client, or use defaults
+            const clientPlaceholders = placeholders[currentClientForWriter.name] || {
+                context: "E.g., describe what's in the photo or what the post is about...",
+                requirements: "E.g., 'Include a call-to-action' or 'Keep it short for Stories' or any specific instructions..."
+            };
+            
+            postContextField.placeholder = clientPlaceholders.context;
+            requirementsField.placeholder = clientPlaceholders.requirements;
+            
+            document.getElementById('captionWriterModal').classList.add('active');
+            
+            document.getElementById('postContext').value = '';
+            document.getElementById('requirements').value = '';
+            document.getElementById('resultsSection').style.display = 'none';
+            document.getElementById('previewImagesContainer').innerHTML = '';
+            document.getElementById('fileUploadArea').classList.remove('has-file');
+            document.getElementById('fileUploadArea').querySelector('.upload-text').textContent = 'Click to upload photos or drag & drop';
+            uploadedImages = [];
+        }
+
+        function closeCaptionWriter() {
+            document.getElementById('captionWriterModal').classList.remove('active');
+        }
+
+        function openHookGenerator() {
+            if (!currentClientForWriter) {
+                alert('Please select a client first');
+                return;
+            }
+            
+            // Client-specific placeholder examples
+            const placeholders = {
+                "Dean's Wrecker Service": "E.g., 'moving a CAT excavator off I-40', 'heavy equipment recovery on job site', 'semi truck breakdown tow'",
+                "Shear Perfection Barbershop": "E.g., 'skin fade transformation', 'lineup and beard trim', 'taper fade tutorial'",
+                "McMillan Design": "E.g., 'custom home reveal', 'modern farmhouse-inspired design', 'architectural rendering walkthrough'",
+                "Exeter Building Company": "E.g., 'custom home construction progress', 'kitchen renovation reveal', 'craftsmanship details'",
+                "Witherspoon Rose Culture": "E.g., 'spring rose planting', 'rose garden maintenance tips', 'heritage rose varieties'",
+                "Coalition Kitchen": "E.g., 'new protein bowl menu launch', 'meal prep process', 'macro-friendly meal showcase'",
+                "Currin Outdoor Living": "E.g., 'pool installation reveal', 'outdoor kitchen transformation', 'backyard oasis project'"
+            };
+            
+            const placeholder = placeholders[currentClientForWriter.name] || "E.g., 'your post topic here'";
+            
+            document.getElementById('hookGeneratorModal').classList.add('active');
+            document.getElementById('hookTopic').value = '';
+            document.getElementById('hookTopic').placeholder = placeholder;
+            document.getElementById('hookResultsSection').style.display = 'none';
+            
+            // Uncheck all checkboxes
+            ['hookCuriosity', 'hookControversy', 'hookStorytelling', 'hookLists', 'hookBoldClaims', 'hookFunny'].forEach(id => {
+                document.getElementById(id).checked = false;
+            });
+        }
+
+        function closeHookGenerator() {
+            document.getElementById('hookGeneratorModal').classList.remove('active');
+        }
+
+        function openContentIdeas() {
+            if (!currentClientForWriter) {
+                alert('Please select a client first');
+                return;
+            }
+            
+            // Client-specific placeholder examples
+            const placeholders = {
+                "Dean's Wrecker Service": "E.g., 'heavy equipment recovery' or 'towing tutorials' or leave blank for general towing content ideas",
+                "Shear Perfection Barbershop": "E.g., 'fade tutorials' or 'barber transformations' or leave blank for general barbershop content ideas",
+                "McMillan Design": "E.g., 'custom home tours' or 'design process' or leave blank for general architecture content ideas",
+                "Exeter Building Company": "E.g., 'construction process' or 'renovation reveals' or leave blank for general building content ideas",
+                "Witherspoon Rose Culture": "E.g., 'rose care tips' or 'garden design' or leave blank for general rose content ideas",
+                "Coalition Kitchen": "E.g., 'meal prep videos' or 'nutrition tips' or leave blank for general healthy eating content ideas",
+                "Currin Outdoor Living": "E.g., 'pool builds' or 'outdoor kitchen tours' or leave blank for general outdoor living content ideas"
+            };
+            
+            const placeholder = placeholders[currentClientForWriter.name] || "E.g., describe the type of content you want ideas for, or leave blank for general ideas";
+            
+            document.getElementById('contentIdeasModal').classList.add('active');
+            document.getElementById('contentTopic').value = '';
+            document.getElementById('contentTopic').placeholder = placeholder;
+            document.getElementById('ideasResultsSection').style.display = 'none';
+            
+            // Reset conversation history for fresh start
+            contentIdeasConversation = [];
+        }
+
+        function closeContentIdeas() {
+            document.getElementById('contentIdeasModal').classList.remove('active');
+        }
+
+        async function generateContentIdeas() {
+            const topic = document.getElementById('contentTopic').value.trim();
+            
+            // Topic is optional - if blank, research general content for the industry
+            const searchTopic = topic || `general ${currentClientForWriter.industry} content`;
+
+            document.getElementById('generateIdeasBtn').disabled = true;
+            document.getElementById('ideasLoadingSpinner').classList.add('active');
+            document.getElementById('ideasResultsSection').style.display = 'none';
+            
+            const loadingText = document.getElementById('ideasLoadingSpinner').querySelector('.loading-text');
+            loadingText.textContent = 'Researching top-performing videos...';
+
+            try {
+                // Research viral content with URLs and metrics
+                const researchPrompt = `Search for viral TikTok and Instagram Reels content about "${searchTopic}" in the ${currentClientForWriter.industry} industry.
+
+I understand you may not be able to find direct video URLs with exact metrics. Instead, focus on:
+
+1. **VIRAL PATTERNS & TRENDS** in this niche:
+   - What types of content are getting high engagement?
+   - What hooks and formats are working?
+   - What visual styles or editing techniques are popular?
+
+2. **SPECIFIC EXAMPLES** (even if you can't provide direct URLs):
+   - Describe 8-12 viral video concepts you found
+   - Include approximate performance (if available: "500k+ views", "high engagement")
+   - Extract the hooks or opening lines used
+   - Explain why each performed well
+
+3. **COMMON PATTERNS**:
+   - What makes content go viral in this niche?
+   - Repeated themes, formats, or techniques
+   - Timing, length, style preferences
+
+4. **ACTIONABLE CONTENT IDEAS** for ${currentClientForWriter.name}:
+   - 5-7 specific content ideas based on what's working
+   - Include suggested hooks for each
+   - Explain why each will work (based on patterns)
+
+FORMAT:
+
+🔥 WHAT'S GOING VIRAL:
+
+[Describe 8-12 viral content examples. For each include:]
+- Content type/concept
+- Approximate performance (if available)
+- Hook/opening line used
+- Why it worked
+
+📊 VIRAL PATTERNS:
+- [Pattern 1]
+- [Pattern 2]
+- [Pattern 3]
+
+💡 CONTENT IDEAS FOR ${currentClientForWriter.name}:
+
+1. [Idea Title]
+   📝 Concept: [Description]
+   🎣 Hook: "[Suggested hook]"
+   🎯 Why: [Based on research]
+
+[Continue for 5-7 ideas]
+
+If you CAN find specific URLs and metrics, absolutely include them! But if not, focus on patterns and examples that will help create similar viral content.`;
+
+                loadingText.textContent = 'Analyzing viral patterns...';
+
+                const apiKey = getApiKey();
+                if (!apiKey) {
+                    document.getElementById('generateIdeasBtn').disabled = false;
+                    document.getElementById('ideasLoadingSpinner').classList.remove('active');
+                    return;
+                }
+
+                const response = await fetch('https://api.anthropic.com/v1/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': apiKey,
+                        'anthropic-version': '2023-06-01'
+                    },
+                    body: JSON.stringify({
+                        model: 'claude-sonnet-4-20250514',
+                        max_tokens: 4000,
+                        tools: [{
+                            type: "web_search_20250305",
+                            name: "web_search"
+                        }],
+                        messages: [{
+                            role: 'user',
+                            content: researchPrompt
+                        }]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to research content');
+                }
+
+                const data = await response.json();
+                const researchText = data.content.find(c => c.type === 'text')?.text || '';
+
+                // Save to conversation history
+                if (contentIdeasConversation.length === 0) {
+                    // First message - save the original query
+                    contentIdeasConversation.push({
+                        role: 'user',
+                        content: researchPrompt
+                    });
+                }
+                contentIdeasConversation.push({
+                    role: 'assistant',
+                    content: researchText
+                });
+
+                displayContentIdeas(researchText);
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to research content ideas. Please try again.');
+            } finally {
+                document.getElementById('generateIdeasBtn').disabled = false;
+                document.getElementById('ideasLoadingSpinner').classList.remove('active');
+            }
+        }
+
+        function displayContentIdeas(researchText) {
+            const resultsDiv = document.getElementById('ideasResults');
+            
+            let html = `
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="font-size: 1.2rem;">🔍</span>
+                        <strong style="color: #fff;">Research-Backed Content Ideas</strong>
+                    </div>
+                    <div style="color: #fff; font-size: 0.9rem; opacity: 0.95;">
+                        Based on analysis of top-performing videos with high views, engagement, and viral potential.
+                    </div>
+                </div>
+            `;
+
+            // Show conversation history if there are refinements
+            if (contentIdeasConversation.length > 2) {
+                html += `
+                    <div style="margin-bottom: 1.5rem; border-left: 3px solid #667eea; padding-left: 1rem;">
+                        <div style="color: #92A8A7; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.75rem;">📝 Conversation History:</div>
+                `;
+                
+                // Show only user refinements (skip the initial research prompt)
+                for (let i = 2; i < contentIdeasConversation.length; i += 2) {
+                    if (contentIdeasConversation[i].role === 'user') {
+                        html += `
+                            <div style="background: #1a1a1a; padding: 0.75rem; border-radius: 6px; margin-bottom: 0.5rem;">
+                                <div style="color: #667eea; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.25rem;">You asked:</div>
+                                <div style="color: #fff; font-size: 0.9rem;">${contentIdeasConversation[i].content}</div>
+                            </div>
+                        `;
+                    }
+                }
+                
+                html += `</div>`;
+            }
+
+            // Display the latest research text
+            html += `
+                <div class="caption-option" style="margin-bottom: 1.5rem;">
+                    <div style="color: #fff; white-space: pre-wrap; line-height: 1.6;">${researchText}</div>
+                </div>
+            `;
+
+            // Add refinement section
+            html += `
+                <div style="border-top: 1px solid #2a2a2a; padding-top: 1.5rem; margin-top: 1rem;">
+                    <label class="writer-label" style="margin-bottom: 0.5rem; display: block;">Want different results? Refine your search:</label>
+                    <textarea 
+                        id="refineInput" 
+                        class="writer-textarea" 
+                        placeholder="E.g., 'Show me more time-lapse content' or 'Focus on behind-the-scenes style' or 'I want more educational content'"
+                        style="min-height: 60px; margin-bottom: 0.75rem;"
+                    ></textarea>
+                    <button class="generate-btn" onclick="refineContentIdeas()" style="width: 100%;">
+                        🔄 Refine & Regenerate
+                    </button>
+                </div>
+            `;
+
+            resultsDiv.innerHTML = html;
+            document.getElementById('ideasResultsSection').style.display = 'block';
+            document.getElementById('ideasResultsSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        async function refineContentIdeas() {
+            const refinement = document.getElementById('refineInput').value.trim();
+            
+            if (!refinement) {
+                alert('Please describe how you want to refine the search');
+                return;
+            }
+
+            // Update loading text
+            document.getElementById('generateIdeasBtn').disabled = true;
+            document.getElementById('ideasLoadingSpinner').classList.add('active');
+            const loadingText = document.getElementById('ideasLoadingSpinner').querySelector('.loading-text');
+            loadingText.textContent = 'Refining search based on your feedback...';
+
+            try {
+                const apiKey = getApiKey();
+                if (!apiKey) {
+                    document.getElementById('generateIdeasBtn').disabled = false;
+                    document.getElementById('ideasLoadingSpinner').classList.remove('active');
+                    return;
+                }
+
+                // Add user's refinement to conversation
+                contentIdeasConversation.push({
+                    role: 'user',
+                    content: refinement
+                });
+
+                // Make API call with full conversation history
+                const response = await fetch('https://api.anthropic.com/v1/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': apiKey,
+                        'anthropic-version': '2023-06-01'
+                    },
+                    body: JSON.stringify({
+                        model: 'claude-sonnet-4-20250514',
+                        max_tokens: 4000,
+                        tools: [{
+                            type: "web_search_20250305",
+                            name: "web_search"
+                        }],
+                        messages: contentIdeasConversation // Send full conversation
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to refine search');
+                }
+
+                const data = await response.json();
+                const researchText = data.content.find(c => c.type === 'text')?.text || '';
+
+                // Add AI response to conversation
+                contentIdeasConversation.push({
+                    role: 'assistant',
+                    content: researchText
+                });
+
+                // Clear the refinement input
+                document.getElementById('refineInput').value = '';
+
+                displayContentIdeas(researchText);
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to refine search. Please try again.');
+            } finally {
+                document.getElementById('generateIdeasBtn').disabled = false;
+                document.getElementById('ideasLoadingSpinner').classList.remove('active');
+            }
+        }
+
+        async function generateHooks() {
+            const topic = document.getElementById('hookTopic').value.trim();
+            
+            if (!topic) {
+                alert('Please describe what the post is about');
+                return;
+            }
+
+            // Get selected hook styles
+            const selectedStyles = [];
+            ['hookCuriosity', 'hookControversy', 'hookStorytelling', 'hookLists', 'hookBoldClaims', 'hookFunny'].forEach(id => {
+                const checkbox = document.getElementById(id);
+                if (checkbox.checked) {
+                    selectedStyles.push(checkbox.value);
+                }
+            });
+
+            const hookStyles = selectedStyles.length > 0 ? selectedStyles.join(', ') : 'all styles (Curiosity, Controversy, Storytelling, Lists, Bold Claims, Funny)';
+
+            const apiKey = getApiKey();
+            if (!apiKey) return;
+
+            document.getElementById('generateHooksBtn').disabled = true;
+            document.getElementById('hookLoadingSpinner').classList.add('active');
+            document.getElementById('hookResultsSection').style.display = 'none';
+            
+            // Update loading text to show research phase
+            const loadingText = document.getElementById('hookLoadingSpinner').querySelector('.loading-text');
+            loadingText.textContent = 'Researching viral content in your niche...';
+
+            try {
+                // RESEARCH PHASE: Find viral content in the niche
+                let researchData = '';
+                
+                try {
+                    loadingText.textContent = 'Analyzing top-performing posts...';
+                    
+                    // Search for viral content related to the topic and industry
+                    const searchQuery = `${currentClientForWriter.industry} ${topic} viral TikTok Instagram high views engagement`;
+                    
+                    const researchResponse = await fetch('https://api.anthropic.com/v1/messages', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'x-api-key': apiKey,
+                            'anthropic-version': '2023-06-01'
+                        },
+                        body: JSON.stringify({
+                            model: 'claude-sonnet-4-20250514',
+                            max_tokens: 2000,
+                            tools: [{
+                                type: "web_search_20250305",
+                                name: "web_search"
+                            }],
+                            messages: [{
+                                role: 'user',
+                                content: `Search for viral social media posts (TikTok, Instagram Reels) about "${topic}" in the ${currentClientForWriter.industry} industry.
+
+FOCUS ON:
+1. Posts with HIGH VIEWS (100k+)
+2. Posts with HIGH SHARES/SAVES
+3. Posts with HIGH ENGAGEMENT (comments, likes)
+
+For each top-performing post you find, extract:
+- The OPENING HOOK (first 1-2 sentences)
+- View count (if available)
+- Engagement metrics (if available)
+- What made it viral
+
+Find 5-10 examples of viral hooks and analyze the patterns.
+
+Format your response as:
+VIRAL HOOK EXAMPLES:
+1. "[Hook text]" - [X] views, [Y] engagement - Pattern: [why it worked]
+2. [etc...]
+
+COMMON PATTERNS:
+- [List patterns you notice across multiple viral posts]`
+                            }]
+                        })
+                    });
+
+                    if (researchResponse.ok) {
+                        const researchResult = await researchResponse.json();
+                        const textContent = researchResult.content.find(c => c.type === 'text');
+                        if (textContent) {
+                            researchData = textContent.text;
+                        }
+                    }
+                } catch (researchError) {
+                    console.log('Research phase failed, continuing with AI generation:', researchError);
+                    // Continue without research data if it fails
+                }
+
+                loadingText.textContent = 'Generating scroll-stopping hooks...';
+
+                const brandContext = `
+Brand: ${currentClientForWriter.name}
+Industry: ${currentClientForWriter.industry}
+Tone & Voice: ${currentClientForWriter.tone.description}
+Voice Characteristics: ${currentClientForWriter.tone.voice.join(', ')}
+
+DO's:
+${currentClientForWriter.dos.map((item, i) => `${i + 1}. ${item}`).join('\n')}
+
+DON'Ts:
+${currentClientForWriter.donts.map((item, i) => `${i + 1}. ${item}`).join('\n')}
+                `.trim();
+
+                const promptText = `You are a viral content strategist specializing in scroll-stopping hooks for ${currentClientForWriter.name}.
+
+BRAND GUIDELINES:
+${brandContext}
+
+${researchData ? `
+VIRAL CONTENT RESEARCH:
+Based on analysis of top-performing posts in this niche:
+${researchData}
+
+USE THIS RESEARCH to inform your hooks. Look for patterns that are PROVEN to work based on actual view counts, shares, and engagement. Adapt these patterns to ${currentClientForWriter.name}'s brand voice.
+` : ''}
+
+TASK: Generate 10-15 viral hook frameworks for a post about: "${topic}"
+
+Hook styles to include: ${hookStyles}
+
+ORGANIZE hooks by category with clear headers:
+- 💭 CURIOSITY HOOKS (hooks that make people think "wait, what?")
+- 🔥 CONTROVERSY HOOKS (hooks that challenge common beliefs)
+- 📖 STORYTELLING HOOKS (hooks that start a narrative)
+- 📝 LIST HOOKS (hooks that promise specific takeaways)
+- ⚡ BOLD CLAIM HOOKS (hooks that make powerful statements)
+- 😂 FUNNY HOOKS (hooks with humor, wit, or playfulness that match the brand voice)
+
+REQUIREMENTS:
+- Each hook should be 10-15 words max
+- Keep hooks in ${currentClientForWriter.name}'s brand voice
+- ${researchData ? 'PRIORITY: Use patterns from the viral research above - these are PROVEN to get views and engagement' : 'Make hooks compelling and scroll-stopping'}
+- Make hooks customizable (use [brackets] for fill-in-the-blank where helpful)
+- Design each hook to STOP THE SCROLL instantly
+- Follow all brand DO's and DON'Ts
+- Be specific to their industry and expertise
+
+FORMAT:
+For each category, provide 2-4 hooks. Format like:
+
+💭 CURIOSITY HOOKS:
+1. [Hook text here]
+2. [Hook text here]
+
+🔥 CONTROVERSY HOOKS:
+1. [Hook text here]
+2. [Hook text here]
+
+DO NOT include explanations or preamble. ONLY output the organized hooks.`;
+
+                const response = await fetch('https://api.anthropic.com/v1/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': apiKey,
+                        'anthropic-version': '2023-06-01'
+                    },
+                    body: JSON.stringify({
+                        model: 'claude-sonnet-4-20250514',
+                        max_tokens: 2000,
+                        messages: [{
+                            role: 'user',
+                            content: promptText
+                        }]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to generate hooks');
+                }
+
+                const data = await response.json();
+                const hooksText = data.content.find(c => c.type === 'text')?.text || '';
+
+                displayHooks(hooksText, researchData);
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to generate hooks. Please try again.');
+            } finally {
+                document.getElementById('generateHooksBtn').disabled = false;
+                document.getElementById('hookLoadingSpinner').classList.remove('active');
+            }
+        }
+
+        function displayHooks(hooksText, researchData = '') {
+            const resultsDiv = document.getElementById('hookResults');
+            
+            // Split by category headers
+            const sections = hooksText.split(/(?=💭|🔥|📖|📝|⚡|😂)/);
+            
+            let html = '';
+            
+            // Add research insights banner if research was performed
+            if (researchData) {
+                html += `
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <span style="font-size: 1.2rem;">🔍</span>
+                            <strong style="color: #fff;">Research-Backed Hooks</strong>
+                        </div>
+                        <div style="color: #fff; font-size: 0.9rem; opacity: 0.95;">
+                            These hooks are based on analysis of viral posts with high views, shares, and engagement in your niche.
+                        </div>
+                    </div>
+                `;
+            }
+            
+            sections.forEach(section => {
+                if (section.trim()) {
+                    const lines = section.trim().split('\n');
+                    const categoryLine = lines[0];
+                    const hooks = lines.slice(1).filter(line => line.trim() && /^\d+\./.test(line.trim()));
+                    
+                    if (hooks.length > 0) {
+                        html += `
+                            <div style="margin-bottom: 2rem;">
+                                <div style="color: #92A8A7; font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #2a2a2a;">
+                                    ${categoryLine}
+                                </div>
+                                ${hooks.map((hook, i) => {
+                                    const hookText = hook.replace(/^\d+\.\s*/, '').trim();
+                                    return `
+                                        <div class="caption-option">
+                                            <div class="caption-header">
+                                                <div class="caption-style">Hook ${i + 1}</div>
+                                                <button class="copy-btn" onclick="copyHook(this, \`${hookText.replace(/`/g, '\\`')}\`)">Copy</button>
+                                            </div>
+                                            <div class="caption-text">${hookText}</div>
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        `;
+                    }
+                }
+            });
+
+            resultsDiv.innerHTML = html;
+            document.getElementById('hookResultsSection').style.display = 'block';
+            document.getElementById('hookResultsSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function copyHook(button, hookText) {
+            navigator.clipboard.writeText(hookText).then(() => {
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function handlePhotoUpload(event) {
+            const files = Array.from(event.target.files);
+            if (files.length === 0) return;
+
+            files.forEach(file => {
+                compressImage(file).then(compressedBase64 => {
+                    uploadedImages.push({
+                        base64: compressedBase64,
+                        name: file.name
+                    });
+                    
+                    const container = document.getElementById('previewImagesContainer');
+                    const imgDiv = document.createElement('div');
+                    imgDiv.className = 'preview-image-container';
+                    imgDiv.innerHTML = `
+                        <img src="${compressedBase64}" class="preview-image">
+                        <button class="remove-image" onclick="removeImage(${uploadedImages.length - 1})">×</button>
+                    `;
+                    container.appendChild(imgDiv);
+                    
+                    const uploadArea = document.getElementById('fileUploadArea');
+                    uploadArea.classList.add('has-file');
+                    uploadArea.querySelector('.upload-text').textContent = `${uploadedImages.length} photo(s) uploaded`;
+                });
+            });
+        }
+
+        async function compressImage(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width;
+                        let height = img.height;
+                        
+                        // Max dimension of 2000px (good quality, smaller file)
+                        const maxDimension = 2000;
+                        if (width > maxDimension || height > maxDimension) {
+                            if (width > height) {
+                                height = (height / width) * maxDimension;
+                                width = maxDimension;
+                            } else {
+                                width = (width / height) * maxDimension;
+                                height = maxDimension;
+                            }
+                        }
+                        
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        
+                        // Start with 0.85 quality and reduce if needed
+                        let quality = 0.85;
+                        let base64 = canvas.toDataURL('image/jpeg', quality);
+                        
+                        // Keep reducing quality until under 5MB
+                        while (base64.length > 5242880 * 1.37 && quality > 0.3) { // 1.37 accounts for base64 overhead
+                            quality -= 0.1;
+                            base64 = canvas.toDataURL('image/jpeg', quality);
+                        }
+                        
+                        resolve(base64);
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function removeImage(index) {
+            uploadedImages.splice(index, 1);
+            const container = document.getElementById('previewImagesContainer');
+            container.children[index].remove();
+            
+            const uploadArea = document.getElementById('fileUploadArea');
+            if (uploadedImages.length === 0) {
+                uploadArea.classList.remove('has-file');
+                uploadArea.querySelector('.upload-text').textContent = 'Click to upload photos or drag & drop';
+            } else {
+                uploadArea.querySelector('.upload-text').textContent = `${uploadedImages.length} photo(s) uploaded`;
+            }
+        }
+
+        const uploadArea = document.getElementById('fileUploadArea');
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#92A8A7';
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = '#92A8A7';
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#92A8A7';
+            
+            const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+            if (files.length > 0) {
+                const input = document.getElementById('photoInput');
+                const dataTransfer = new DataTransfer();
+                files.forEach(f => dataTransfer.items.add(f));
+                input.files = dataTransfer.files;
+                handlePhotoUpload({ target: { files } });
+            }
+        });
+
+        async function generateCaptions() {
+            const postContext = document.getElementById('postContext').value.trim();
+            
+            if (!postContext && uploadedImages.length === 0) {
+                alert('Please provide context about the post or upload at least one photo.');
+                return;
+            }
+
+            const apiKey = getApiKey();
+            if (!apiKey) return;
+
+            document.getElementById('generateBtn').disabled = true;
+            document.getElementById('loadingSpinner').classList.add('active');
+            document.getElementById('resultsSection').style.display = 'none';
+
+            try {
+                const brandContext = `
+Brand: ${currentClientForWriter.name}
+Industry: ${currentClientForWriter.industry}
+
+Tone & Voice: ${currentClientForWriter.tone.description}
+Voice Characteristics: ${currentClientForWriter.tone.voice.join(', ')}
+
+DO's:
+${currentClientForWriter.dos.map((item, i) => `${i + 1}. ${item}`).join('\n')}
+
+DON'Ts:
+${currentClientForWriter.donts.map((item, i) => `${i + 1}. ${item}`).join('\n')}
+                `.trim();
+
+                const userRequirements = document.getElementById('requirements').value.trim();
+
+                const messageContent = [];
+                
+                uploadedImages.forEach((img, i) => {
+                    messageContent.push({
+                        type: "image",
+                        source: {
+                            type: "base64",
+                            media_type: img.base64.split(';')[0].split(':')[1],
+                            data: img.base64.split(',')[1]
+                        }
+                    });
+                });
+
+                let promptText = `You are an expert social media manager and copywriter writing Instagram captions for ${currentClientForWriter.name}.
+
+BRAND GUIDELINES:
+${brandContext}
+
+TASK: Write Instagram caption options based on:
+${postContext ? `Context: ${postContext}` : ''}
+${uploadedImages.length > 0 ? `\nImages: ${uploadedImages.length} photo(s) uploaded${uploadedImages.length > 1 ? ' (carousel post)' : ''}` : ''}
+${userRequirements ? `\nSpecial Requirements: ${userRequirements}` : ''}
+
+${currentClientForWriter.name === "Dean's Wrecker Service" ? `
+SPECIAL INSTRUCTIONS FOR DEAN'S WRECKER SERVICE:
+
+🚨 CRITICAL PHOTO CHECK - BEFORE writing any captions:
+FIRST, carefully examine the photo(s) for ANY visible company names, logos, or business decals on the equipment being towed/moved (NOT on Dean's vehicles).
+
+IF you see company names/logos on the equipment being moved:
+⚠️ WARNING: Include this at the START of your response:
+"⚠️ PHOTO CONTAINS COMPANY NAMES - I can see [company name] visible on the equipment. Per Dean's policy, I will mention the equipment manufacturer (e.g., CAT, Komatsu) but will NOT mention [company name] in the captions."
+
+THEN write captions that:
+- Mention the MANUFACTURER (CAT, Komatsu, Volvo, John Deere, etc.) 
+- Mention the EQUIPMENT TYPE (excavator, bulldozer, loader, etc.)
+- NEVER mention the client company name that's on the decals/stickers
+
+Example:
+❌ WRONG: "Moving this Gregory Poole excavator..."
+✅ RIGHT: "Moving this CAT excavator (~45,000 lbs)..."
+
+Caption Guidelines:
+- Focus on the equipment Dean's is moving and Dean's equipment being used
+- Include approximate weights when showing equipment being moved
+- Use proper equipment terminology
+- Keep it professional and detail-oriented
+- Highlight the technical expertise and care
+
+` : ''}
+${currentClientForWriter.name === 'Shear Perfection Barbershop' ? `
+SPECIAL INSTRUCTIONS FOR SHEAR PERFECTION:
+- Create ONLY 3 SHORT captions (no medium or long versions)
+- Keep all captions 1-2 sentences maximum
+- If the image shows a haircut: Simply describe the haircut style and credit the barber (e.g., "Low taper fade with the beard lineup. Cut by Aaron.")
+- Use actual barber terminology (skin fade, taper fade, burst fade, drop fade, low fade, high fade, temp fade, etc.)
+- Keep it simple and direct - no fluff, no trying too hard
+- Example format: "[Haircut description]. Cut by [Barber name]." or just "[Haircut description]."
+- EMOJIS: Use barbershop emojis with variance across the 3 captions:
+  • 🔥 (fire) - for clean cuts, transformations, heat
+  • 💈 (barbershop pole) - classic barber vibes
+  • ✂️ (scissors) - the craft, the work
+  • Mix it up - don't use the same emoji in every caption
+  • Examples: "Clean fade 🔥" or "Taper fade with the lineup 💈" or "Skin fade details ✂️"
+  • Sometimes skip emojis entirely for a clean look
+
+Create 3 caption STYLES (SHORT ONLY):
+1. Descriptive - Simply state what the cut is
+2. Conversational - Like explaining the cut to someone 
+3. Technique-focused - Highlight the skill/method used
+
+` : `
+Create 3 distinct caption STYLES, each in 3 different LENGTHS:
+
+STYLES:
+1. Educational - Teach something valuable, position as expert
+2. Engaging - Conversational and relatable, encourages interaction
+3. Story-driven - Emotional connection, narrative approach
+
+LENGTHS:
+- Short: 1-2 sentences (punchy, quick scroll-stopper)
+- Medium: 3-5 sentences (balanced, most versatile)
+- Long: 6-10 sentences (deep dive, storytelling)
+`}
+CRITICAL WRITING RULES:
+- Write like a real human would speak these words out loud
+- NEVER use A/B/C list structure, numbered lists, or bullet points in captions
+- NEVER use formulaic AI patterns like "Here's why:", "Let's dive in:", "The bottom line:"
+- NEVER use em-dashes (—) - use commas, periods, or parentheses instead
+- Use emojis strategically (1-3 per caption max) - only where they add meaning or emotion, never as decoration
+- Vary sentence length naturally - mix short punchy sentences with longer flowing ones
+- Use conversational rhythm, contractions, and natural speech patterns
+- Start sentences in different ways - avoid repetitive structures
+- Write in a way that flows when read aloud, not in structured sections
+- Use line breaks for pacing and breathing room (hit enter between thoughts/sentences for readability)
+- Naturally incorporate SEO keywords relevant to ${currentClientForWriter.industry} and the content
+- Write like you're texting a friend who trusts your expertise, not like you're writing marketing copy
+
+AVOID these AI tells:
+❌ "Here's the thing..." / "Here's why..." / "Here's what..."
+❌ Starting every sentence the same way
+❌ Overly structured paragraph formats
+❌ Generic enthusiasm ("I'm excited to share...")
+❌ Lists disguised as paragraphs (First... Second... Finally...)
+❌ Em-dashes (—) - these scream AI writing
+❌ "Let me tell you..." / "I want to talk about..."
+❌ "As a [profession]..." / "In my experience..."
+❌ Overusing transition words (However, Moreover, Furthermore)
+❌ Perfect grammar that sounds robotic (it's okay to be casual)
+❌ Emoji overload or random emoji placement
+❌ [website] or [link] placeholders
+❌ --- dividers or separators
+❌ ## hashtag prompts or "hashtags:" sections
+❌ # headers or ANY markdown formatting (no #, ##, ###, etc.)
+❌ Section labels like "ENGAGING CAPTIONS" or style names as headers
+
+DO write like this:
+✅ Natural conversation with strategic line breaks
+✅ Varied sentence structure and length
+✅ Personality and voice
+✅ The way the brand would actually talk
+✅ Keywords woven naturally into copy
+✅ Strategic emojis that enhance meaning (🌹 for roses, 💚 for care, ✨ for transformation)
+✅ Casual, conversational flow that sounds like a real person wrote it
+
+IMPORTANT: Write ONLY the caption text - no hashtags, no website links, no dividers, no extra formatting, no markdown headers (# or ##), no section labels. Just the caption copy ready to paste into Instagram.
+
+Follow the brand's DO's and DON'Ts exactly. Match the tone and style from examples.
+
+${currentClientForWriter.name === 'Shear Perfection Barbershop' ? `
+Format your response EXACTLY like this (provide 3 SHORT captions only - NO markdown headers or formatting):
+
+1. Descriptive
+[caption text - describe the cut and credit barber]
+
+2. Conversational  
+[caption text - casual explanation of the cut]
+
+3. Technique-focused
+[caption text - highlight the skill/method]
+
+DO NOT include any # headers, section titles, or any other formatting. Just the numbered label followed by the caption text.
+` : `
+Format your response EXACTLY like this (provide all 9 captions with simple numbered labels, then the caption text - NO markdown headers or formatting):
+
+1. Educational - Short
+[caption text here]
+
+2. Educational - Medium
+[caption text here]
+
+3. Educational - Long
+[caption text here]
+
+4. Engaging - Short
+[caption text here]
+
+5. Engaging - Medium
+[caption text here]
+
+6. Engaging - Long
+[caption text here]
+
+7. Story-driven - Short
+[caption text here]
+
+8. Story-driven - Medium
+[caption text here]
+
+9. Story-driven - Long
+[caption text here]
+
+DO NOT include any # headers, section titles like "ENGAGING CAPTIONS" or "EDUCATIONAL CAPTIONS", or any other formatting. Just the numbered label followed by the caption text.
+`}`;
+
+                messageContent.push({
+                    type: "text",
+                    text: promptText
+                });
+
+                const response = await fetch("https://api.anthropic.com/v1/messages", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "x-api-key": apiKey,
+                        "anthropic-version": "2023-06-01"
+                    },
+                    body: JSON.stringify({
+                        model: "claude-sonnet-4-20250514",
+                        max_tokens: 3000,
+                        messages: [{ role: "user", content: messageContent }]
+                    })
+                });
+
+                const data = await response.json();
+                
+                // Better error handling
+                if (!response.ok) {
+                    console.error('API Error:', data);
+                    throw new Error(data.error?.message || `API returned status ${response.status}`);
+                }
+                
+                if (!data.content || !data.content[0] || !data.content[0].text) {
+                    console.error('Unexpected response structure:', data);
+                    throw new Error('No text content in AI response');
+                }
+                
+                displayCaptions(data.content[0].text);
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert(`Failed to generate captions: ${error.message}\n\nPlease try again.`);
+            } finally {
+                document.getElementById('generateBtn').disabled = false;
+                document.getElementById('loadingSpinner').classList.remove('active');
+            }
+        }
+
+        function displayCaptions(aiResponse) {
+            const sections = aiResponse.split(/(?=\d+\.\s*(?:Educational|Engaging|Story))/i);
+            const captions = [];
+
+            for (const section of sections) {
+                if (!section.trim()) continue;
+                
+                const lines = section.trim().split('\n');
+                const firstLine = lines[0];
+                const styleMatch = firstLine.match(/\d+\.\s*(Educational|Engaging|Story[^\n]*)\s*-\s*(Short|Medium|Long)/i);
+                
+                if (styleMatch) {
+                    const style = styleMatch[1].trim();
+                    const length = styleMatch[2].trim();
+                    const text = lines.slice(1).join('\n').trim();
+                    
+                    if (text) {
+                        captions.push({ 
+                            style: `${style} - ${length}`,
+                            text 
+                        });
+                    }
+                }
+            }
+
+            if (captions.length === 0) {
+                const parts = aiResponse.split(/\n\s*\n/).filter(p => p.trim());
+                parts.forEach((part, i) => {
+                    const lines = part.split('\n');
+                    const firstLine = lines[0];
+                    const style = firstLine.replace(/^[\d\.\*\-\s]+/, '').trim();
+                    const text = lines.slice(1).join('\n').trim() || part.trim();
+                    
+                    if (text && text.length > 20) {
+                        captions.push({
+                            style: style.length < 50 ? style : `Caption ${i + 1}`,
+                            text
+                        });
+                    }
+                });
+            }
+
+            const resultsDiv = document.getElementById('captionResults');
+            resultsDiv.innerHTML = captions.map((caption, i) => `
+                <div class="caption-option">
+                    <div class="caption-header">
+                        <div class="caption-style">${caption.style}</div>
+                        <button class="copy-btn" onclick="copyCaption(${i}, this)">Copy</button>
+                    </div>
+                    <div class="caption-text">${caption.text.replace(/\n/g, '<br>')}</div>
+                </div>
+            `).join('');
+
+            document.getElementById('resultsSection').style.display = 'block';
+            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function copyCaption(index, button) {
+            const captionElement = button.closest('.caption-option').querySelector('.caption-text');
+            const captionText = captionElement.innerHTML.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]*>/g, '');
+            
+            navigator.clipboard.writeText(captionText).then(() => {
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        renderClients();
+    </script>
+</body>
+</html>
